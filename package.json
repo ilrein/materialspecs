@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "aws-amplify": "^1.1.40",
+    "dayjs": "^1.8.16",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -14,7 +16,8 @@
     "redux": "^4.0.4",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.1",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "later": "RickCarlino/later"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

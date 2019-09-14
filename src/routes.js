@@ -17,6 +17,9 @@ import Verify from './pages/Auth/Verify';
 // import ResetPassword from './pages/Auth/ResetPassword';
 import Dashboard from './pages/Dashboard';
 
+// layout
+import MainLayout from './layouts';
+
 const Wrapper = styled.div`
   height: 100%;
   margin: 0;
@@ -50,11 +53,13 @@ const Routes = () => (
           component={Verify}
         />
 
-        <Route
-          exact
-          path="/dashboard"
-          component={Dashboard}
-        />
+        <MainLayout>
+          <Route
+            exact
+            path="/dashboard"
+            component={Dashboard}
+          />
+        </MainLayout> 
 
         {/* <Route
           exact

@@ -1,4 +1,4 @@
-// import API_URL from './baseUrl';
+const API_URL = 'http://localhost:4000';
 
 // App
 export const APP_NAME = 'Material Specs';
@@ -15,7 +15,7 @@ export const CAPTURE_ITEMS = 'CAPTURE_ITEMS';
 export const CAPTURE_ITEM = 'CAPTURE_ITEM';
 
 // Endpoints
-// export const API_USERS = `${API_URL}/api/users`;
+export const API_USERS = `${API_URL}/api/users`;
 // export const API_RESTAURANT = `${API_URL}/api/restaurants`;
 // export const API_LOCATIONS = `${API_URL}/api/locations`;
 // export const API_MENUS = `${API_URL}/api/menus`;
