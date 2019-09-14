@@ -1,0 +1,4 @@
+{
+  "passwordStrength1": "have a minimum of 8 characters",
+  "passwordStrength2": "include a minimum of three of the following mix of character types: uppercase, lowercase, numbers, and ! @ # $ % ^ & * () <> [] {} | _+-= symbols"
+}

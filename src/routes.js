@@ -10,13 +10,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Pages
 import HomePage from './pages/Home';
-// import Register from './pages/Auth/Register';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
 // import Verify from './pages/Auth/Verify';
 // import ForgotPassword from './pages/Auth/ForgotPassword';
 // import ResetPassword from './pages/Auth/ResetPassword';
 
 const Wrapper = styled.div`
   height: 100%;
+  margin: 0;
 `;
 
 const Routes = () => (
@@ -29,25 +31,31 @@ const Routes = () => (
           component={HomePage}
         />
 
-        {/* <Route
+        <Route
+          exact
+          path="/login"
+          component={Login}
+        />
+
+        <Route
           exact
           path="/register"
           component={Register}
         />
 
-        <Route
+        {/* <Route
           exact
           path="/verify"
           component={Verify}
-        />
+        /> */}
 
-        <Route
+        {/* <Route
           exact
           path="/forgot-password"
           component={ForgotPassword}
-        />
+        /> */}
 
-        <Route
+        {/* <Route
           exact
           path="/reset-password"
           component={ResetPassword}
