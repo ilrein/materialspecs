@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Amplify, { Storage } from 'aws-amplify';
+import { Provider } from 'react-redux';
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -9,6 +10,10 @@ import './animations.css';
 import './global.css';
 import * as serviceWorker from './serviceWorker';
 import AWS_EXPORTS from './aws-exports';
+
+import configureStore from './store';
+
+const store = configureStore();
 
 Amplify.configure(AWS_EXPORTS);
 Storage.configure({ level: 'public' });
