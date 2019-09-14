@@ -93,10 +93,10 @@ const MainLayout = ({
 
               <Menu.Item
                 as="a"
-                onClick={() => pushAndToggle('/reservations')}
+                onClick={() => pushAndToggle('/items')}
               >
-                <Icon name="clock" />
-                Reservations
+                <Icon name="sticky note" />
+                Items
               </Menu.Item>
             </Sidebar>
 

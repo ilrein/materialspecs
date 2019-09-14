@@ -16,6 +16,7 @@ import Verify from './pages/Auth/Verify';
 // import ForgotPassword from './pages/Auth/ForgotPassword';
 // import ResetPassword from './pages/Auth/ResetPassword';
 import Dashboard from './pages/Dashboard';
+import Items from './pages/Items';
 
 // layout
 import MainLayout from './layouts';
@@ -58,6 +59,12 @@ const Routes = () => (
             exact
             path="/dashboard"
             component={Dashboard}
+          />
+
+          <Route
+            exact
+            path="/items"
+            component={Items}
           />
         </MainLayout> 
 

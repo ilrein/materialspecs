@@ -38,6 +38,7 @@ const UserContainer = ({
           'jwt-token': cognitoUser.signInUserSession.accessToken.jwtToken,
         },
       });
+      
       const user = await res.json();
       /**
        * Create a user obj is not found
