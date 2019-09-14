@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"cognito2f1eb4e6": {
+		"cognitoce6fa10f": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
@@ -8,6 +8,12 @@
 	"hosting": {
 		"S3AndCloudFront": {
 			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"storage": {
+		"s3777ffaf3": {
+			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
 	}
