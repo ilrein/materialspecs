@@ -12,9 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import HomePage from './pages/Home';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
-// import Verify from './pages/Auth/Verify';
+import Verify from './pages/Auth/Verify';
 // import ForgotPassword from './pages/Auth/ForgotPassword';
 // import ResetPassword from './pages/Auth/ResetPassword';
+import Dashboard from './pages/Dashboard';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -43,11 +44,17 @@ const Routes = () => (
           component={Register}
         />
 
-        {/* <Route
+        <Route
           exact
           path="/verify"
           component={Verify}
-        /> */}
+        />
+
+        <Route
+          exact
+          path="/dashboard"
+          component={Dashboard}
+        />
 
         {/* <Route
           exact

@@ -25,10 +25,6 @@ const Wrapper = styled.div`
   background-color: #eee;
 `;
 
-const Caption = styled.p`
-  padding: 0.5rem 0;
-`;
-
 class Register extends Component {
   state = {
     // UI phases
