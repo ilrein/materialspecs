@@ -93,9 +93,17 @@ const MainLayout = ({
 
               <Menu.Item
                 as="a"
-                onClick={() => pushAndToggle('/items')}
+                onClick={() => pushAndToggle('/sheets')}
               >
                 <Icon name="sticky note" />
+                Sheets
+              </Menu.Item>
+
+              <Menu.Item
+                as="a"
+                onClick={() => pushAndToggle('/items')}
+              >
+                <Icon name="barcode" />
                 Items
               </Menu.Item>
             </Sidebar>
