@@ -16,6 +16,15 @@ const ListItems = ({ items }) => (
           <Table.HeaderCell>
             Manufacturer
           </Table.HeaderCell>
+          <Table.HeaderCell>
+            Supplier
+          </Table.HeaderCell>
+          <Table.HeaderCell>
+            Finish
+          </Table.HeaderCell>
+          <Table.HeaderCell>
+            Price
+          </Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -35,6 +44,19 @@ const ListItems = ({ items }) => (
                 {item.manufacturerAddress}
                 <br />
                 {item.manufacturerPhone}
+              </Table.Cell>
+              <Table.Cell collapsing>
+                {item.supplierName}
+                <br />
+                {item.supplierAddress}
+                <br />
+                {item.supplierPhone}
+              </Table.Cell>
+              <Table.Cell collapsing>
+                {item.finish}
+              </Table.Cell>
+              <Table.Cell collapsing>
+                {item.price}
               </Table.Cell>
             </Table.Row>
           ))

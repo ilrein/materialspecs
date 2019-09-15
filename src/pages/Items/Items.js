@@ -41,7 +41,7 @@ const Items = ({ userReducer, captureItems, items }) => {
     } catch (error) {
       console.log(error); // eslint-disable-line
     }
-  }
+  };
 
   const submitFile = async (file) => {
     const form = new FormData();
@@ -109,7 +109,7 @@ const Items = ({ userReducer, captureItems, items }) => {
                   setDoc(file);
                   submitFile(file);
                 }}
-                defaultDropMessage="Upload your Spec Sheet by dropping or clicking"
+                defaultDropMessage="Upload your Material Spec Sheet by dropping or clicking"
               />
             )
         }
