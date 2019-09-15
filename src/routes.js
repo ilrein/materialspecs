@@ -18,6 +18,7 @@ import Verify from './pages/Auth/Verify';
 import Dashboard from './pages/Dashboard';
 import Items from './pages/Items';
 import ListItems from './pages/Items/ListItems';
+import Sheets from './pages/Sheets';
 
 // layout
 import MainLayout from './layouts';
@@ -72,6 +73,12 @@ const Routes = () => (
             exact
             path="/list-items"
             component={ListItems}
+          />
+
+          <Route
+            exact
+            path="/sheets"
+            component={Sheets}
           />
         </MainLayout> 
 

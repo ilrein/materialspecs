@@ -101,7 +101,7 @@ class Login extends Component {
 
             <Button
               onClick={this.handleSubmit}
-              color="pink"
+              primary
               loading={loading}
               style={{ margin: '1rem 0 2rem 0' }}
             >

@@ -49,7 +49,7 @@ const Navbar = ({
       </Menu.Item>
       <Link to="/dashboard">
         <Menu.Item>
-          Dashboard
+          New Sheet
         </Menu.Item>
       </Link>
 

@@ -199,6 +199,7 @@ class Register extends Component {
               onClick={this.handleSubmit}
               loading={loading}
               style={{ marginBottom: '6rem' }}
+              primary
             >
               Submit
             </Form.Button>
