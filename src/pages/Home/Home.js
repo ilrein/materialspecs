@@ -43,7 +43,6 @@ import {
   Button,
   Card,
   Container,
-  Divider,
   Grid,
   Header,
   Icon,
@@ -78,13 +77,13 @@ const HomepageHeading = ({ mobile }) => (
     <Container text>
       <Image
         style={{ "padding-top": 100 + "px" }}
-        src={require("../../images/logogreen.png")}
+        src={require("../../images/logowhite.png")}
         centered
       />
 
       <Header
         as="h2"
-        content="Enabling unparalleled transparency through a centralized data source"
+        content="Lightning Fast Material Cost Reporting"
         inverted
         style={{
           fontSize: mobile ? "1.5em" : "1.7em",
@@ -264,23 +263,22 @@ ResponsiveContainer.propTypes = {
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
-    <Segment style={{ padding: "8em 0em" }} vertical>
+    <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign="middle">
         <Grid.Row>
           <Grid.Column width={6}>
-            <Header as="h3" style={{ fontSize: "2em" }}>
+            <Header as="h3" style={{ fontSize: '2em' }}>
               Making Material Management Easy
             </Header>
-            <p style={{ fontSize: "1.33em" }}>
+            <p style={{ fontSize: '1.33em' }}>
               One-stop-shop for building material management solutions for
-              owners, general contractors, and manufactures
+              owners, general contractors, and manufacturers
             </p>
-            <Header as="h3" style={{ fontSize: "2em" }}>
-              We Make Bananas That Can Dance
+            <Header as="h3" style={{ fontSize: '2em' }}>
+              AI Powered Solution
             </Header>
-            <p style={{ fontSize: "1.33em" }}>
-              Yes that's right, you thought it was the stuff of dreams, but even
-              bananas can be bioengineered.
+            <p style={{ fontSize: '1.33em' }}>
+              Use machine learning to automatically process old PDFs
             </p>
           </Grid.Column>
           <Grid.Column floated="right" width={8}>
@@ -296,25 +294,18 @@ const HomepageLayout = () => (
         <Grid.Row></Grid.Row>
       </Grid>
     </Segment>
-    <Segment inverted style={{ padding: "0em" }} vertical>
+    <Segment inverted style={{ padding: '0em' }} vertical>
       <Grid celled="internally" columns="equal" stackable>
         <Grid.Row textAlign="center">
           <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
             <Header inverted as="h3" style={{ fontSize: "2em" }}>
-              "So much time saved!"
+              Hours saved manually typing in data found in PDFs
             </Header>
-            <p style={{ fontSize: "1.33em" }}>
-              That is what they all say about us
-            </p>
           </Grid.Column>
-          <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
-            <Header inverted as="h3" style={{ fontSize: "2em" }}>
-              "I shouldn't have gone with their competitor."
+          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+            <Header inverted as="h3" style={{ fontSize: '2em' }}>
+              Report generation in minutes, not hours
             </Header>
-            <p style={{ fontSize: "1.33em" }}>
-              <Image avatar src={require("../../images/cl.png")} />
-              <b>Nan</b> Chief Fun Officer Architect Corp
-            </p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -336,15 +327,24 @@ const HomepageLayout = () => (
     >
       <Card.Group
         centered
-        itemsPerRow={4}
+        itemsPerRow={3}
         style={{ paddingBottom: "5em", textAlign: "center" }}
       >
+        <Card>
+          <Image src={require("../../images/il.jpg")} wrapped ui={false} />
+          <Card.Content>
+            <Card.Header>Ilia Reingold</Card.Header>
+            <Card.Description>
+              Lead Architect
+            </Card.Description>
+          </Card.Content>
+        </Card>
         <Card>
           <Image src={require("../../images/jm.png")} wrapped ui={false} />
           <Card.Content>
             <Card.Header>Jamar Mitchell</Card.Header>
             <Card.Description>
-              Jamar is a comedian living in Nashville.
+              Fullstack Developer
             </Card.Description>
           </Card.Content>
         </Card>
@@ -353,69 +353,51 @@ const HomepageLayout = () => (
           <Card.Content>
             <Card.Header>Cornelia Li</Card.Header>
             <Card.Description>
-              Jamar is a comedian living in Nashville.
-            </Card.Description>
-          </Card.Content>
-        </Card>
-        <Card>
-          <Image src={require("../../images/il.jpg")} wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>Jamar Mitchell</Card.Header>
-            <Card.Description>
-              Jamar is a comedian living in Nashville.
+              Business Analyst
             </Card.Description>
           </Card.Content>
         </Card>
         <Card>
           <Image src={require("../../images/vi2.png")} wrapped ui={false} />
           <Card.Content>
-            <Card.Header>Victor</Card.Header>
+            <Card.Header>Victor Yip</Card.Header>
             <Card.Description>
-              Jamar is a comedian living in Nashville.
+              Fullstack Developer
             </Card.Description>
           </Card.Content>
         </Card>
         <Card>
           <Image src={require("../../images/am.png")} wrapped ui={false} />
           <Card.Content>
-            <Card.Header>Anika</Card.Header>
+            <Card.Header>Meg D'Souza</Card.Header>
             <Card.Description>
-              Jamar is a comedian living in Nashville.
+              Business Analyst
             </Card.Description>
           </Card.Content>
         </Card>
         <Card>
           <Image src={require("../../images/meg.png")} wrapped ui={false} />
           <Card.Content>
-            <Card.Header>Meg</Card.Header>
+            <Card.Header>Anika Marzia</Card.Header>
             <Card.Description>
-              Jamar is a comedian living in Nashville.
+              Business Analyst
             </Card.Description>
           </Card.Content>
         </Card>
       </Card.Group>
     </div>
-    <Segment inverted style={{ padding: "8em 0em" }} vertical>
+    <Segment inverted style={{ padding: '8em 0em' }} vertical>
       <Container text>
-        <Header inverted as="h3" style={{ fontSize: "2em" }}>
-          Breaking The Grid, Grabs Your Attention
+        <Header inverted as="h3" style={{ fontSize: '2em' }}>
+          Stop wasting time manually creating Spec PDFs
         </Header>
-        <p style={{ fontSize: "1.33em" }}>
-          Instead of focusing on content creation and hard work, we have learned
-          how to master the art of doing nothing by providing massive amounts of
-          whitespace and generic content that can seem massive, monolithic and
-          worth your attention.
-        </p>
-        <Button as="a" size="large">
-          Learn More
-        </Button>
       </Container>
     </Segment>
     <Segment vertical style={{ padding: "5em 0em" }}>
       <Container>
         <Grid divided stackable>
           <Grid.Row>
-            <Grid.Column width={3}>
+            {/* <Grid.Column width={3}>
               <Header as="h4" content="About" />
               <List link>
                 <List.Item as="a">Sitemap</List.Item>
@@ -432,15 +414,12 @@ const HomepageLayout = () => (
                 <List.Item as="a">How To Access</List.Item>
                 <List.Item as="a">Favorite X-Men</List.Item>
               </List>
-            </Grid.Column>
-            <Grid.Column width={10}>
-              <Header as="h4">Sponsers</Header>
+            </Grid.Column> */}
+            <Grid.Column width={4}>
+              <Header as="h4">Sponsors</Header>
 
-              <Card.Group itemsPerRow={6}>
-                <Card raised image={src1} />
-                <Card raised image={src2} />
-                <Card raised image={src3} />
-                <Card raised image={src4} />
+              <Card.Group itemsPerRow={1}>
+                <Card image={src1} />
               </Card.Group>
             </Grid.Column>
           </Grid.Row>
