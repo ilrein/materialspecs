@@ -16,6 +16,8 @@ import {
 // Containers
 import AuthContainer from '../containers/AuthContainer';
 import UserContainer from '../containers/UserContainer';
+import ItemsContainer from '../containers/ItemsContainer';
+import SheetsContainer from '../containers/SheetsContainer';
 
 // // Components
 import Navbar from '../components/Navbar';
@@ -72,58 +74,62 @@ const MainLayout = ({
   return (
     <AuthContainer>
       <UserContainer>
-        <Wrapper>
-          <Sidebar.Pushable>
-            <Sidebar
-              as={Menu}
-              animation="push"
-              icon="labeled"
-              inverted
-              vertical
-              visible={sidebarIsOpen}
-              width="thin"
-            >
-              <Menu.Item
-                as="a"
-                onClick={() => pushAndToggle('/dashboard')}
-                style={{ fontSize: '1.75rem' }}
-              >
-                {APP_NAME}
-              </Menu.Item>
+        <ItemsContainer>
+          <SheetsContainer>
+            <Wrapper>
+              <Sidebar.Pushable>
+                <Sidebar
+                  as={Menu}
+                  animation="push"
+                  icon="labeled"
+                  inverted
+                  vertical
+                  visible={sidebarIsOpen}
+                  width="thin"
+                >
+                  <Menu.Item
+                    as="a"
+                    onClick={() => pushAndToggle('/dashboard')}
+                    style={{ fontSize: '1.75rem' }}
+                  >
+                    {APP_NAME}
+                  </Menu.Item>
 
-              <Menu.Item
-                as="a"
-                onClick={() => pushAndToggle('/sheets')}
-              >
-                <Icon name="sticky note" />
-                Sheets
-              </Menu.Item>
+                  <Menu.Item
+                    as="a"
+                    onClick={() => pushAndToggle('/sheets')}
+                  >
+                    <Icon name="sticky note" />
+                    Sheets
+                  </Menu.Item>
 
-              <Menu.Item
-                as="a"
-                onClick={() => pushAndToggle('/items')}
-              >
-                <Icon name="barcode" />
-                Items
-              </Menu.Item>
-            </Sidebar>
+                  <Menu.Item
+                    as="a"
+                    onClick={() => pushAndToggle('/items')}
+                  >
+                    <Icon name="barcode" />
+                    Items
+                  </Menu.Item>
+                </Sidebar>
 
-            <Sidebar.Pusher
-              dimmed={sidebarIsOpen}
-              onClick={sidebarIsOpen ? toggleSidebar : null}
-            >
-              <Section>
-                <Navbar
-                  toggleMenu={toggleSidebar}
-                  menuButton={(
-                    <AnimatedHamburger open={sidebarIsOpen} />
-                  )}
-                />
-                {children}
-              </Section>
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
-        </Wrapper>
+                <Sidebar.Pusher
+                  dimmed={sidebarIsOpen}
+                  onClick={sidebarIsOpen ? toggleSidebar : null}
+                >
+                  <Section>
+                    <Navbar
+                      toggleMenu={toggleSidebar}
+                      menuButton={(
+                        <AnimatedHamburger open={sidebarIsOpen} />
+                      )}
+                    />
+                    {children}
+                  </Section>
+                </Sidebar.Pusher>
+              </Sidebar.Pushable>
+            </Wrapper>
+          </SheetsContainer>
+        </ItemsContainer>
       </UserContainer>
     </AuthContainer>
   );

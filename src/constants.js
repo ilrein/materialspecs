@@ -10,13 +10,15 @@ export const CAPTURE_COGNITO_USER = 'CAPTURE_COGNITO_USER';
 export const CAPTURE_USER = 'CAPTURE_USER';
 export const CLEAR_USER = 'CLEAR_USER';
 
-// Dishes
+// items
 export const CAPTURE_ITEMS = 'CAPTURE_ITEMS';
-export const CAPTURE_ITEM = 'CAPTURE_ITEM';
+
+export const CAPTURE_SHEETS = 'CAPTURE_SHEETS';
 
 // Endpoints
 export const API_USERS = `${API_URL}/api/users`;
 export const API_ITEMS = `${API_URL}/api/items`;
+export const API_SHEETS = `${API_URL}/api/sheets`;
 
 // Kulers
 export const ORANGE = '#F05E63';
