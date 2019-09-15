@@ -5,9 +5,11 @@
   "dependencies": {
     "aws-amplify": "^1.1.40",
     "dayjs": "^1.8.16",
+    "format-usd": "^1.0.1",
     "isomorphic-fetch": "^2.2.1",
     "later": "RickCarlino/later",
     "prop-types": "^15.7.2",
+    "ramda": "^0.26.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-dropzone": "^10.1.8",

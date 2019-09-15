@@ -10,6 +10,9 @@ import {
 } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import formatUSD from 'format-usd';
+
+const R = require('ramda');
 
 const Wrapper = styled.div`
   padding: 2rem;
@@ -21,14 +24,14 @@ const Dashboard = ({ userReducer, items }) => {
   const [name, setName] = useState('');
   const [materials, setMaterials] = useState(items.docs.map(option => ({
     key: option._id,
-    value: {
-      ...option,
-      quantity: 1,
-    },
+    value: option,
     text: option.product,
   })));
 
   const [selectedMaterials, setSelectedMaterials] = useState([]);
+
+  const [materialQuantity, setMaterialQuantity] = useState([]);
+  console.log(materialQuantity);
 
   return (
     <Wrapper
@@ -57,8 +60,20 @@ const Dashboard = ({ userReducer, items }) => {
                 options={materials}
                 value={selectedMaterials}
                 onChange={(e, { value }) => {
-                  console.log(value);
                   setSelectedMaterials(value);
+                  // value.map(item => setMaterialQuantity([...materialQuantity, item.id]));
+                  value.map((item) => {
+                    setMaterialQuantity(
+                      [
+                        ...materialQuantity,
+                        {
+                          _id: item._id,
+                          quantity: 1,
+                          price: Number(item.price.split('$')[1]),
+                        },
+                      ],
+                    );
+                  });
                 }}
               />
             )
@@ -92,7 +107,7 @@ const Dashboard = ({ userReducer, items }) => {
 
                   <Table.Body>
                     {
-                      selectedMaterials.map(material => (
+                      selectedMaterials.map((material, index) => (
                         <Table.Row>
                           <Table.Cell>
                             {material.product}
@@ -118,24 +133,40 @@ const Dashboard = ({ userReducer, items }) => {
                               color="blue"
                               size="large"
                             >
-                              {material.quantity}
+                              {
+                                R.find(R.propEq('_id', material._id))(materialQuantity).quantity
+                              }
                             </Label>
 
-                            <Button size="tiny">
+                            <Button
+                              size="tiny"
+                              onClick={() => {
+                                const oldValueIndex = R.findIndex(R.propEq('_id', material._id))(materialQuantity);
+                                const oldValue = R.find(R.propEq('_id', material._id))(materialQuantity);
+                                const newValue = {
+                                  ...oldValue,
+                                  quantity: oldValue.quantity += 1,
+                                };
+
+                                // console.log(newValue);
+                                const updated = R.update(
+                                  oldValueIndex,
+                                  newValue,
+                                  materialQuantity,
+                                );
+
+                                setMaterialQuantity(updated);
+                              }}
+                            >
                               <Icon name="plus" />
                             </Button>
-
-                            {/* <Button.Group>
-                              <Button>
-                                <Icon name="plus" />
-                              </Button>
-                              <Button>
-                                <Icon name="minus" />
-                              </Button>
-                            </Button.Group> */}
                           </Table.Cell>
                           <Table.Cell>
-                            total
+                            {formatUSD({
+                              amount:
+                                R.find(R.propEq('_id', material._id))(materialQuantity).quantity
+                                * R.find(R.propEq('_id', material._id))(materialQuantity).price,
+                            })}
                           </Table.Cell>
                         </Table.Row>
                       ))
