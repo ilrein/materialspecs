@@ -6,8 +6,13 @@ import {
 } from 'semantic-ui-react';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
-import { API_ITEMS } from '../../constants';
+import {
+  API_ITEMS,
+  CAPTURE_ITEMS,
+} from '../../constants';
 
 import Dropzone from '../../components/Dropzone';
 
@@ -15,21 +20,38 @@ const Wrapper = styled.div`
   padding: 2rem;
 `;
 
-const Items = ({ userReducer }) => {
+const Items = ({ userReducer, captureItems, items }) => {
   const [doc, setDoc] = useState(null);
   const [uploading, setUploading] = useState(false);
 
+  const getItemsAgain = async () => {
+    try {
+      const res = await fetch(API_ITEMS, {
+        headers: {
+          'Content-Type': 'application/json',
+          'jwt-token': userReducer.cognitoUser.signInUserSession.accessToken.jwtToken,
+        },
+      });
+      
+      const items = await res.json();
+      
+      captureItems(items);
+    } catch (error) {
+      console.log(error); // eslint-disable-line
+    }
+  }
+
   const submitFile = async (file) => {
     const form = new FormData();
-    console.log(file);
+
     form.append('pdf', file, file.name);
 
     try {
+      setUploading(true);
+
       const post = await fetch(API_ITEMS, {
         method: 'POST',
         headers: {
-          // 'Content-Type': 'multipart/form-data',
-          // 'Content-Type': 'application/json',
           'jwt-token': userReducer.cognitoUser.signInUserSession.accessToken.jwtToken,
         },
         body: form,
@@ -37,21 +59,28 @@ const Items = ({ userReducer }) => {
 
       const result = await post.json();
 
-      console.log(result);
+      toast.success(`Created ${result.product}`);
+      setDoc(null);
+
+      getItemsAgain();
     } catch (error) {
       console.log(error); // eslint-disable-line
     }
+
+    setUploading(false);
   };
 
   return (
     <Wrapper
       className="fade-in"
     >
-      <Header
-        as="h1"
-      >
-        Items
-      </Header>
+      <Link to="/list-items">
+        <Header
+          as="a"
+        >
+          Items ({items.totalDocs})
+        </Header>
+      </Link>
       <div>
         {
           uploading
@@ -89,6 +118,14 @@ const Items = ({ userReducer }) => {
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  captureItems: payload => dispatch({
+    type: CAPTURE_ITEMS,
+    payload,
+  }),
+});
+
 export default connect(
-  ({ userReducer }) => ({ userReducer }),
+  ({ userReducer, items }) => ({ userReducer, items }),
+  mapDispatchToProps,
 )(Items);
