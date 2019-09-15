@@ -133,6 +133,7 @@ class Home extends Component {
             textAlign="center"
             style={{ minHeight: 700, padding: "1em 0em" }}
             vertical
+            className="fade-in"
           >
             <Menu
               fixed={fixed ? "top" : null}
