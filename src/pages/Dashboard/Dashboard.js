@@ -11,6 +11,11 @@ import {
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import formatUSD from 'format-usd';
+import fetch from 'isomorphic-fetch';
+import { toast } from 'react-toastify';
+import { withRouter } from 'react-router-dom';
+
+import { API_SHEETS } from '../../constants';
 
 const R = require('ramda');
 
@@ -20,7 +25,7 @@ const Wrapper = styled.div`
 
 // const mapOptions = options => 
 
-const Dashboard = ({ userReducer, items }) => {
+const Dashboard = ({ userReducer, items, history }) => {
   const [name, setName] = useState('');
   const [materials, setMaterials] = useState(items.docs.map(option => ({
     key: option._id,
@@ -31,7 +36,49 @@ const Dashboard = ({ userReducer, items }) => {
   const [selectedMaterials, setSelectedMaterials] = useState([]);
 
   const [materialQuantity, setMaterialQuantity] = useState([]);
-  console.log(materialQuantity);
+  
+  const totalPrice = () => {
+    const prices = materialQuantity.map(mat => mat.price * mat.quantity);
+
+    return formatUSD({ amount: R.sum(prices) });
+  };
+
+  const [saving, setSaving] = useState(false);
+
+  const saveSheet = async () => {
+    const totalCost = totalPrice();
+
+    const params = {
+      sheet: {
+        projectName: name,
+        materials: materialQuantity,
+        totalCost,
+      },
+    };
+
+    setSaving(true);
+
+    try {
+      const post = await fetch(API_SHEETS, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'jwt-token': userReducer.cognitoUser.signInUserSession.accessToken.jwtToken,
+        },
+        body: JSON.stringify(params),
+      });
+
+      await post.json();
+
+      toast.success('Created new spec sheet!');
+
+      history.push('/sheets');
+    } catch (error) {
+      console.log(error); // eslint-disable-line
+    }
+
+    setSaving(false);
+  };
 
   return (
     <Wrapper
@@ -61,13 +108,12 @@ const Dashboard = ({ userReducer, items }) => {
                 value={selectedMaterials}
                 onChange={(e, { value }) => {
                   setSelectedMaterials(value);
-                  // value.map(item => setMaterialQuantity([...materialQuantity, item.id]));
                   value.map((item) => {
                     setMaterialQuantity(
                       [
                         ...materialQuantity,
                         {
-                          _id: item._id,
+                          ...item,
                           quantity: 1,
                           price: Number(item.price.split('$')[1]),
                         },
@@ -125,6 +171,23 @@ const Dashboard = ({ userReducer, items }) => {
                             <Button
                               size="tiny"
                               disabled={material.quantity === 1}
+                              onClick={() => {
+                                const oldValueIndex = R.findIndex(R.propEq('_id', material._id))(materialQuantity);
+                                const oldValue = R.find(R.propEq('_id', material._id))(materialQuantity);
+                                const newValue = {
+                                  ...oldValue,
+                                  quantity: oldValue.quantity -= 1,
+                                };
+
+                                // console.log(newValue);
+                                const updated = R.update(
+                                  oldValueIndex,
+                                  newValue,
+                                  materialQuantity,
+                                );
+
+                                setMaterialQuantity(updated);
+                              }}
                             >
                               <Icon name="minus" />
                             </Button>
@@ -178,8 +241,14 @@ const Dashboard = ({ userReducer, items }) => {
             : null
         }
 
+        <Segment>
+          Total Price: {totalPrice()}
+        </Segment>
+
         <Form.Button
           primary
+          loading={saving}
+          onClick={saveSheet}
         >
           Save
         </Form.Button>
@@ -190,4 +259,4 @@ const Dashboard = ({ userReducer, items }) => {
 
 export default connect(
   ({ userReducer, items }) => ({ userReducer, items }),
-)(Dashboard);
+)(withRouter(Dashboard));
