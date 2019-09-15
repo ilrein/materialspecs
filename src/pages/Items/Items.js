@@ -7,7 +7,7 @@ import {
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import {
   API_ITEMS,
@@ -15,6 +15,8 @@ import {
 } from '../../constants';
 
 import Dropzone from '../../components/Dropzone';
+
+import ListItems from './ListItems';
 
 const Wrapper = styled.div`
   padding: 2rem;
@@ -74,13 +76,11 @@ const Items = ({ userReducer, captureItems, items }) => {
     <Wrapper
       className="fade-in"
     >
-      <Link to="/list-items">
-        <Header
-          as="a"
-        >
-          Items ({items.totalDocs})
-        </Header>
-      </Link>
+      <Header
+        as="h1"
+      >
+        Items ({items.totalDocs})
+      </Header>
       <div>
         {
           uploading
@@ -114,6 +114,8 @@ const Items = ({ userReducer, captureItems, items }) => {
             )
         }
       </div>
+
+      <ListItems />
     </Wrapper>
   );
 };
